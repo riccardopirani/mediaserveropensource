@@ -13,7 +13,7 @@ services:
     ports:
       - 7001:7001
     # To use the host network mode, comment out the ports above and uncomment the line below.
-    network_mode: "host"
+    network_mode: host
     volumes:
       - /srv/mediaserver/etc:/opt/networkoptix-metavms/mediaserver/etc
       - /srv/mediaserver/var:/opt/networkoptix-metavms/mediaserver/var
@@ -23,7 +23,8 @@ services:
       - /srv/mediaserver/tmp:/tmp
 
   mediaserver-root-tool:
-    image: metavms-server:${MEDIASERVER_VERSION}
+    image: metavms-server:5.1.3.38363
+    network_mode: host
     user: root
     command: ["/opt/networkoptix-metavms/mediaserver/bin/root-tool"]
     volumes:
