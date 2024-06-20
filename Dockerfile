@@ -42,7 +42,7 @@ RUN dpkg -i /tmp/mediaserver.deb || apt-get install -f -y
 # Clean up temporary file
 RUN rm /tmp/mediaserver.deb
 
-RUN chown networkoptix-metavms: /opt/networkoptix-metavms/mediaserver/var/
+#RUN chown networkoptix-metavms: /opt/networkoptix-metavms/mediaserver/var/
 
 # Add entrypoint script
 ADD entrypoint.sh /opt/mediaserver/entrypoint.sh
