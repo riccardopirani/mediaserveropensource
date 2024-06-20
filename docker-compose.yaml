@@ -8,7 +8,7 @@ services:
       args:
         COMPANY: networkoptix-metavms
         MEDIASERVER_DEB: https://updates.networkoptix.com/metavms/38363/linux/metavms-server-5.1.3.38363-linux_x64.deb
-    image: metavms-server:${MEDIASERVER_VERSION}
+    image: metavms-server:5.1.3.38363
     user: networkoptix-metavms
     ports:
       - 7001:7001
