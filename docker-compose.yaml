@@ -16,10 +16,10 @@ services:
     network_mode: host
     volumes:
       #- /srv/mediaserver/etc:/opt/networkoptix-metavms/mediaserver/etc
-      - /srv/mediaserver/var:/opt/networkoptix-metavms/mediaserver/var
-      - /srv/mediaserver/nx_ini:/home/networkoptix-metavms/.config/nx_ini
-      - /srv/mediaserver/entrypoint.d:/opt/mediaserver/entrypoint.d
-      - /srv/mediaserver/recordings:/recordings
+      #- /srv/mediaserver/var:/opt/networkoptix-metavms/mediaserver/var
+      #- /srv/mediaserver/nx_ini:/home/networkoptix-metavms/.config/nx_ini
+      #- /srv/mediaserver/entrypoint.d:/opt/mediaserver/entrypoint.d
+      #- /srv/mediaserver/recordings:/recordings
       - /srv/mediaserver/tmp:/tmp
 
   mediaserver-root-tool:
