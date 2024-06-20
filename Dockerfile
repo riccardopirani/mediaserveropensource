@@ -16,24 +16,36 @@ ENV COMPANY=${COMPANY}
 # Disable EULA dialogs and confirmation prompts in installers.
 ENV DEBIAN_FRONTEND noninteractive
 
-# Install package needed for dpkg
-RUN apt update && \
-    apt install -y \
+
+FROM ubuntu:20.04
+LABEL maintainer "Network Optix <support@networkoptix.com>"
+
+# VMS Server debian package file or URL.
+ARG MEDIASERVER_DEB=metavms-server-5.1.3.38363-linux_x64.deb
+
+
+# Install packages needed for dpkg and other dependencies
+RUN apt-get update && \
+    apt-get install -y \
+    cifs-utils \
+    libcap2-bin \
+    libglib2.0-0 \
+    net-tools \
     dpkg
 
 # Copy deb file to container
 COPY metavms-server-5.1.3.38363-linux_x64.deb /tmp/mediaserver.deb
 
 # Install the deb file
-RUN dpkg -i /tmp/mediaserver.deb
+RUN dpkg -i /tmp/mediaserver.deb || apt-get install -f -y
 
 # Clean up temporary file
 RUN rm /tmp/mediaserver.deb
 
 RUN chown networkoptix-metavms: /opt/networkoptix-metavms/mediaserver/var/
 
-ADD entrypoint.sh /opt/mediaserver/
-
+# Add entrypoint script
+ADD entrypoint.sh /opt/mediaserver/entrypoint.sh
 USER ${COMPANY}
 WORKDIR /home/${COMPANY}
 # Runs the media server on container start unless argument(s) specified.
